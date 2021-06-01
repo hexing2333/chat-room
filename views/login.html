@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>加入会议</title>
+    <link rel="stylesheet" href="/css/newmeeting.css" type="text/css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <h1>加入会议</h1>
+            <form id="joinForm">
+                <input type="text" placeholder="您的姓名" id="name">
+                <button type="submit" id="joinMeet" style="margin-top: 20px;">Join</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return r[2];
+            } else {
+                return null;
+            }
+        }
+        var BaseUrl = window.location.origin;
+        $.get(BaseUrl + "/uidCheck", { uuid: getQueryString("uuid") }, function (
+            data
+        ) {
+            if (data.status === 0) {
+                alert(data.msg);
+                location.href = "/404";
+            } else {
+                infoObj = data;
+            }
+        });
+        $("#joinForm").submit(function (e) {
+            e.preventDefault();
+        });
+        $("#joinMeet").click(function () {
+            if (!$("#name").val()) {
+                alert("姓名不能为空");
+                return false;
+            } else {
+                $.get(BaseUrl+"/loginStorage",{uuid:getQueryString("uuid"),name:$("#name").val()},function(
+                    data
+                ){
+                    if(data.status === 1){
+                        location.href ="/chat?uuid=" +getQueryString("uuid") +"&name=" +$("#name").val();
+                    }
+                })
+            }
+        });
+    </script>
+</body>
+
+</html>

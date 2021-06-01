@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>新建会议</title>
+    <link rel="stylesheet" href="/css/newmeeting.css" type="text/css">
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <div class="wrapper">
+        <div class="container">
+            <h1>创建会议</h1>
+            <form id="creatForm">
+                <input type="text" placeholder="会议名称" id="meetname">
+                <input type="text" placeholder="您的姓名" id="ownername">
+                <button type="submit" id="createMeet">New</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $("#creatForm").submit(function (e) {
+            e.preventDefault();
+        });
+        $("#createMeet").click(function () {
+            if (!$("#meetname").val()) {
+                alert("会议名称不能为空");
+                return false;
+            }
+            if(!$("#ownername").val()){
+                alert("主持人名不能为空");
+                return false;
+            }
+            var BaseUrl = window.location.origin;
+            $.get(
+                BaseUrl+"/addMeeting", 
+                { meetName: $("#meetname").val(),
+                  ownerName: $("#ownername").val()
+                },
+                function (data, status) {
+                    console.log(data.status)
+                    if (data.status === 2) {
+                        alert(data.msg)
+                    }
+                    if (data.status === 0 || data.status === 1) {
+                        if(data.status === 0){
+                            alert(data.msg);
+                        }
+                        console.log(data)
+                        location.href = "/chat?uuid=" + data.data.uuid + "&name=" +$("#ownername").val();
+                    }
+            });
+        });
+    </script>
+</body>
+
+</html>

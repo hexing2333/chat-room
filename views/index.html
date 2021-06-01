@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>会议主页</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <html>
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <div style="height: 100vh;">
+        <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            分享地址
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        test
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+        <div class="modal fade" id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="leaveModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="leaveModalLabel">
+                            确认离开会议吗?
+                        </h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                        </button>
+                        <button type="button" class="btn btn-primary" id="leavebtn">
+                            确认
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+        <div id='top' class='intoflex'>
+            <!-- TOP -->
+            <div id='top-left' class='colorred italk'><i class="fas fa-heart"></i> Meeting</div>
+            <div id='top-middle' class='intoflex'>
+                <a class='redborder colordark'><i class="fas fa-envelope colorred"></i> Messages</a>
+            </div>
+            <div id='top-right' class='intoflex'>
+                <i class="far fa-question-circle"></i>
+                <i class="far fa-bell colorred"></i>
+                <img src="https://i.loli.net/2021/05/30/RkuBYhzgFV6tec4.png" class='small-img'>
+                <div class="colordark" id="name1">Sushmita Pandey</div>
+                <i class="fas fa-caret-down"></i>
+            </div>
+        </div>
+        <div id='whole' class='intoflex'>
+            <div id='left'>
+                <!-- LEFT -->
+                <div id='left-head' class='center'>
+                    <img src="https://i.loli.net/2021/05/30/RkuBYhzgFV6tec4.png" class='large-img'>
+                    <div class='colordark bigf' id="name2"></div>
+                    <div class='smallf'>Hello,World</div>
+                </div>
+                <div id='left-menu'>
+                    <div class='redbox'><i class="fas fa-envelope"></i> Messages</div>
+                    <div class='colorred leftpad'>Chats</div>
+                    <div class='leftpad'>Send Message</div>
+                </div>
+            </div>
+            <div id='right'>
+                <div id='chat-header' class='intoflex spacebetween'>
+                    <div class="colordark verybigf"><i class="fas fa-envelope colorred"></i> Messages</div>
+                    <div>
+                        <button class="_btn" id='leave' data-toggle="modal" data-target="#leaveModal"><i class="fas fa-paper-plane"></i> Leave</button>
+                        <button class="_btn" id='share' data-toggle="modal" data-target="#shareModal"><i class="fas fa-paper-plane"></i> Share</button>
+                    </div>
+                </div>
+
+                <div id='chats' class='intoflex'>
+                    <div id='chats-left'>
+                        <div id='chats-left-header' class='intoflex spacebetween chatbox'>
+                            <div>Members</div>
+                        </div>
+                        <div id='chats-left-content'>
+                            <div class='chatbox'>
+                                <div class='intoflex first'>
+                                    <img src='https://cdn4.iconfinder.com/data/icons/hipster-items-cartoon/512/val71_14-512.png'
+                                        class='medium-img'>
+                                    <div class='verticalflex'>
+                                        <div class="colorred">Olivia Sol</div>
+                                    </div>
+                                </div>
+                                <div class='intoflex spacebetween verysmallf'>
+                                    <div>19 Jan, 2018 | 03:49 pm</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id='chats-right'>
+                        <div id='chats-right-header' class='intoflex border-bottom'>
+                            <div id="replies" class='colordark redborder'><i class="far fa-eye colorred"></i> REPLIES</div>
+                        </div>
+                        <div id='chats-right-content'></div>
+                        <textarea id='chats-right-footer'></textarea>
+                        <button class="_btn" id='send'><i class="fas fa-paper-plane"></i> Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id='bottom' class='italk'><i class="fas fa-heart"></i>Meeting</div>
+    </div>
+
+    </html>
+    <!-- partial -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>
